@@ -16,47 +16,51 @@
 </head>
 <body>
 
-<h1>制作</h1>
+<h1>制作物一覧</h1>
 <p><a href="index.html">← エスキス帳トップに戻る</a></p>
 
 <!-- 目次 -->
 <div id="toc"><strong>目次：</strong></div>
 
-<!-- 制作物1 -->
-<h2 data-detail="poies01.html">●</h2>
+<!-- 制作物サンプル -->
+<h2 data-detail="poies/poies01.html">●</h2>
 <img src="images/●.jpg" alt="●">
 <p>●</p>
 
+<h2 data-detail="poies/poies02.html">●</h2>
+<img src="images/●.jpg" alt="●">
+<p>●</p>
 
-<!-- JavaScriptで目次自動生成＆h2タイトルもリンク化 -->
+<h2 data-detail="poies/poies03.html">●</h2>
+<img src="images/●.jpg" alt="●">
+<p>●</p>
+
+<!-- JavaScriptで目次自動生成＆h2リンク化 -->
 <script>
-window.onload = function() {
-  var tocDiv = document.getElementById('toc');
-  var headings = document.getElementsByTagName('h2');
-  var tocHtml = '';
+window.addEventListener('DOMContentLoaded', () => {
+  const tocDiv = document.getElementById('toc');
+  const headings = document.querySelectorAll('h2');
+  let tocHtml = '';
 
-  for(var i=0;i<headings.length;i++){
-    var h = headings[i];
-    var num = i + 1;
-    var detailLink = h.getAttribute('data-detail') || '#';
+  headings.forEach((h, index) => {
+    const num = index + 1;
+    const detailLink = h.dataset.detail || '#';
 
-    // h2のテキストに番号を追加
-    var text = h.textContent;
+    // h2のテキストに番号を追加してリンク化
+    const text = h.textContent;
     h.textContent = '';
-    
-    // h2自体をリンクにする
-    var link = document.createElement('a');
+    const link = document.createElement('a');
     link.href = detailLink;
     link.textContent = num + '. ' + text;
     h.appendChild(link);
 
     // 目次リンク
-    tocHtml += '<a href="'+detailLink+'">[' + num + '. ' + text + ']</a>';
-    if(i < headings.length-1) tocHtml += ', ';
-  }
+    tocHtml += `<a href="${detailLink}">[${num}. ${text}]</a>`;
+    if(index < headings.length - 1) tocHtml += ', ';
+  });
 
   tocDiv.innerHTML = '<strong>目次：</strong>' + tocHtml;
-};
+});
 </script>
 
 </body>
