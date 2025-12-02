@@ -21,10 +21,15 @@
 <!-- 目次 -->
 <div id="toc"><strong>目次：</strong></div>
 
-<!-- テーマ1 -->
-<h2><a href="themes01.html">制作と個性化への道</a></h2>
-<p>制作物が自分を導くみたいな話</p>
+<!-- テーマサンプル -->
+<h2><a href="themes/themes01.html">●</a></h2>
+<p>●</p>
 
+<h2><a href="themes/themes02.html">●</a></h2>
+<p>●</p>
+
+<h2><a href="themes/themes03.html">●</a></h2>
+<p>●</p>
 
 <!-- JavaScriptで目次自動生成＆h2番号付け -->
 <script>
@@ -35,12 +40,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   headings.forEach((h, index) => {
     const num = index + 1;
+    const link = h.querySelector('a');
 
     // h2にidを付与
     if(!h.id) h.id = 'theme-' + num;
 
-    // h2内のaがあれば番号を付ける
-    const link = h.querySelector('a');
+    // h2内のaに番号を追加
     if(link) {
         link.textContent = num + '. ' + link.textContent.replace(/^\d+\. /,'');
     } else {
@@ -48,7 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // 目次リンク
-    tocHtml += `<a href="#${h.id}">[${num}. ${link ? link.textContent.replace(/^\d+\. /,'') : h.textContent.replace(/^\d+\. /,'')}]</a>`;
+    const displayText = link ? link.textContent.replace(/^\d+\. /,'') : h.textContent.replace(/^\d+\. /,'');
+    tocHtml += `<a href="#${h.id}">[${num}. ${displayText}]</a>`;
     if(index < headings.length - 1) tocHtml += ', ';
   });
 
