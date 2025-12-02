@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>制作物一覧</title>
+<style>
+  body { font-family: sans-serif; margin: 2rem; line-height: 1.6; max-width: 900px; }
+  h1 { color: #333; }
+  h2 { margin-top: 2rem; color: #444; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; }
+  p { margin-top: 0.5rem; margin-bottom: 1.5rem; }
+  a { color: #3366cc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  #toc { margin-bottom: 2rem; }
+  img { max-width: 100%; height: auto; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+
+<h1>制作</h1>
+<p><a href="index.html">← エスキス帳トップに戻る</a></p>
+
+<!-- 目次 -->
+<div id="toc"><strong>目次：</strong></div>
+
+<!-- 制作物1 -->
+<h2 data-detail="poies01.html">●</h2>
+<img src="images/●.jpg" alt="●">
+<p>●</p>
+
+
+<!-- JavaScriptで目次自動生成＆h2タイトルもリンク化 -->
+<script>
+window.onload = function() {
+  var tocDiv = document.getElementById('toc');
+  var headings = document.getElementsByTagName('h2');
+  var tocHtml = '';
+
+  for(var i=0;i<headings.length;i++){
+    var h = headings[i];
+    var num = i + 1;
+    var detailLink = h.getAttribute('data-detail') || '#';
+
+    // h2のテキストに番号を追加
+    var text = h.textContent;
+    h.textContent = '';
+    
+    // h2自体をリンクにする
+    var link = document.createElement('a');
+    link.href = detailLink;
+    link.textContent = num + '. ' + text;
+    h.appendChild(link);
+
+    // 目次リンク
+    tocHtml += '<a href="'+detailLink+'">[' + num + '. ' + text + ']</a>';
+    if(i < headings.length-1) tocHtml += ', ';
+  }
+
+  tocDiv.innerHTML = '<strong>目次：</strong>' + tocHtml;
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<h2 data-detail="poies●●.html">●新しい作品タイトル●</h2>
+<img src="images/ファイル名.jpg" alt="説明" width="300">
+<p>●簡単な説明文●</p>
+
+これに書いて、poieに入れる。
+poies00はpoies00.htmlにて。

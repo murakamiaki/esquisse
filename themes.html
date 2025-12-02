@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>テーマ集</title>
+<style>
+  body { font-family: sans-serif; margin: 2rem; line-height: 1.6; max-width: 800px; }
+  h1 { color: #333; }
+  h2 { margin-top: 2rem; color: #444; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; }
+  p { margin-top: 0.5rem; margin-bottom: 1.5rem; }
+  a { color: #3366cc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  #toc { margin-bottom: 2rem; }
+</style>
+</head>
+<body>
+
+<h1>テーマ集</h1>
+<p><a href="index.html">← エスキス帳トップに戻る</a></p>
+
+<!-- 目次 -->
+<div id="toc"><strong>目次：</strong></div>
+
+<!-- テーマ1 -->
+<h2><a href="themes01.html">制作と個性化への道</a></h2>
+<p>制作物が自分を導くみたいな話</p>
+
+
+<!-- JavaScriptで目次自動生成＆h2番号付け -->
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const tocDiv = document.getElementById('toc');
+  const headings = document.querySelectorAll('h2');
+  let tocHtml = '';
+
+  headings.forEach((h, index) => {
+    const num = index + 1;
+
+    // h2にidを付与
+    if(!h.id) h.id = 'theme-' + num;
+
+    // h2内のaがあれば番号を付ける
+    const link = h.querySelector('a');
+    if(link) {
+        link.textContent = num + '. ' + link.textContent.replace(/^\d+\. /,'');
+    } else {
+        h.textContent = num + '. ' + h.textContent.replace(/^\d+\. /,'');
+    }
+
+    // 目次リンク
+    tocHtml += `<a href="#${h.id}">[${num}. ${link ? link.textContent.replace(/^\d+\. /,'') : h.textContent.replace(/^\d+\. /,'')}]</a>`;
+    if(index < headings.length - 1) tocHtml += ', ';
+  });
+
+  tocDiv.innerHTML = '<strong>目次：</strong>' + tocHtml;
+});
+</script>
+
+</body>
+</html>
