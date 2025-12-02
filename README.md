@@ -1,9 +1,9 @@
-# poies
+# esquisse
 <br>
 ##ここはなにか<br>
 <br>
 akiの個人的な文章をためるところ。<br>
-正確には　poiesとthemes　で、制作物と思索を載せていこうかなと。<br>
+poiesとthemes　に制作物と思索を載せていこうかなと。<br>
 index-poies-poies01<br>
            -poies02...（思索文の列挙）<br>
      -themes-themes01<br>
